@@ -69,3 +69,4 @@ if __name__ == "__main__":
 print("It is 1st duplicate")
 print("It is duplicate 2")
 print("It is duplicate 3")
+print("It is duplicate 4")
