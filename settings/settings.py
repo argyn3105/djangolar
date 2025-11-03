@@ -32,7 +32,10 @@ INSTALLED_APPS = [
     "catalogs",
     "commerces",
     "abstracts",
+    "users",
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

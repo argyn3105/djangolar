@@ -1,11 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from catalogs.models import Restaurant, MenuItem
 from abstracts.models import AbstractSoftDeletableModel
 
 
 class Address(AbstractSoftDeletableModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="addresses")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="addresses")
     city = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
     building = models.CharField(max_length=50)
@@ -30,7 +31,7 @@ class Order(AbstractSoftDeletableModel):
         ("done", "Done"),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders")
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="orders")
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name="orders")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="new")
